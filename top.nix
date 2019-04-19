@@ -17,6 +17,7 @@ rec {
       arch = "armv6";
       gcc_options = "--with-fpu=vfp --with-float=hard ";
     };
+    aarch64-linux-musl = import ./linux { inherit native; arch = "aarch64"; };
     macos = import ./macos { inherit native; };
   };
 
@@ -28,6 +29,7 @@ rec {
   i686-linux-musl = pkgFun crossenvs.i686-linux-musl;
   x86_64-linux-musl = pkgFun crossenvs.x86_64-linux-musl;
   armv6-linux-musl = pkgFun crossenvs.armv6-linux-musl;
+  aarch64-linux-musl = pkgFun crossenvs.aarch64-linux-musl;
   macos = pkgFun crossenvs.macos;
 
   envs = [
@@ -54,6 +56,8 @@ rec {
   linux-x86_64 = x86_64-linux-musl;
   linux-rpi = armv6-linux-musl;
   rpi = armv6-linux-musl;
+  linux-aarch64 = aarch64-linux-musl;
+  linux-arm64 = aarch64-linux-musl;
   mac = macos;
 
   # filter is a function that can be applied to a local directory to filter out
